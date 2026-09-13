@@ -155,7 +155,7 @@ window.F2X = (() => {
   //  abre wa.me com o texto pronto. A lei nova: rede é permitida quando ajuda.
   function notificarWhatsAppSenha() {
     const agora = new Date().toLocaleString('pt-BR');
-    const texto = 'Sua senha do Receituários Paesano foi alterada em ' + agora + '. Se não foi você, troque a senha.';
+    const texto = 'Sua senha do Receituários M. foi alterada em ' + agora + '. Se não foi você, troque a senha.';
     const gw = (DB().meta.ler().whatsappGateway || '').trim();
     const abrirWaMe = () => {
       try {
@@ -228,7 +228,7 @@ window.F2X = (() => {
       brand.textContent = nome + ' · 2026';
     }
     const ded = document.querySelector('.orq-dedicatoria');
-    if (ded) ded.innerHTML = '<span class="orq-coroa"></span>' + esc(nome) + ' · Dra. M. Paesano da Cunha';
+    if (ded) ded.innerHTML = '<span class="orq-coroa"></span>' + esc(nome) + ' · Dra. M. M. da Cunha';
   }
   function salvarUnidade() {
     const m = DB().meta;
@@ -264,7 +264,7 @@ window.F2X = (() => {
     div.id = 'f2xSaudacao';
     div.innerHTML =
       '<span class="orq-coroa f2x-saudacao-coroa" aria-hidden="true"></span>' +
-      '<div class="f2x-saudacao-texto"><strong>Olá, Dra. M. Paesano da Cunha.</strong>' +
+      '<div class="f2x-saudacao-texto"><strong>Olá, Dra. M. M. da Cunha.</strong>' +
       '<span>Especialista em Medicina de Família e Comunidade</span>' +
       '<span class="f2x-cidade-linha">Cidade do rodapé: <b>' + esc(cidadeAtual()) + '</b> ' +
       '<button type="button" class="f2x-link" data-f2x="cidade" title="Mudar a cidade do rodapé">alterar</button></span>' +

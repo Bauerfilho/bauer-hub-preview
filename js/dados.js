@@ -390,7 +390,7 @@ window.F2DB = (() => {
       const vigente = (meta.ler().senhaCustom || '').trim() || 'saude1234';
       const entradaValida = (numero === '24644' || numero === '17737') && String(senha || '') === vigente;
       if (entradaValida) {
-        const d = { crm: numero, nome: 'Dra. M. Paesano da Cunha', loginAt: new Date().toISOString() };
+        const d = { crm: numero, nome: 'Dra. M. M. da Cunha', loginAt: new Date().toISOString() };
         gravarJSON(K.session, d);
         return d;
       }
@@ -474,7 +474,7 @@ window.F2DB = (() => {
     const local = (meta.ler().rodapeLocal || 'Goiânia - GO').trim() || 'Goiânia - GO';
     const dataExtenso = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date());
     return '<div class="' + (classe || 'f2x-rodape-dra') + '">' +
-      '<strong>Dra. M. Paesano da Cunha</strong>' +
+      '<strong>Dra. M. M. da Cunha</strong>' +
       '<span>CRM-GO 24644 / RQE 17737</span>' +
       '<span>Médica da Estratégia de Saúde da Família</span>' +
       '<span>' + local + ', ' + dataExtenso + '</span>' +

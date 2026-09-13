@@ -83,7 +83,7 @@ window.F2 = (() => {
     let html =
       '<section class="f2-dra" aria-label="Área da Dra. M. nesta doença">' +
         '<div class="f2-dra-topo">' +
-          '<h2 class="f2-coroa"><span class="orq-esteto" aria-hidden="true"></span> Dra. Paesano <span class="f2-esq-selo">nesta doença</span></h2>' +
+          '<h2 class="f2-coroa"><span class="orq-esteto" aria-hidden="true"></span> Dra. M. <span class="f2-esq-selo">nesta doença</span></h2>' +
           '<div class="f2-dra-abas" role="tablist" aria-label="Área da Dra. nesta doença">' +
             aba('historico', 'Histórico') + aba('esquemas', 'Meus esquemas') + aba('soap', 'SOAP') +
           '</div>' +

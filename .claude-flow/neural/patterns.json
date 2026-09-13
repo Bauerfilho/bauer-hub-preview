@@ -2396,7 +2396,7 @@
   {
     "id": "pattern-1787928862806-7mnn",
     "type": "action",
-    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/plans/HUB-v2-PRESENTE-dra-paesano.md-1787928862339 completed by unknown — success=true, quality=0.850",
+    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/plans/HUB-v2-PRESENTE-dra-m.md-1787928862339 completed by unknown — success=true, quality=0.850",
     "embedding": [
       -0.07638493925333023,
       0.07485082000494003,
@@ -2785,7 +2785,7 @@
     ],
     "confidence": 1,
     "metadata": {
-      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/plans/HUB-v2-PRESENTE-dra-paesano.md-1787928862339",
+      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/plans/HUB-v2-PRESENTE-dra-m.md-1787928862339",
       "quality": 0.85
     },
     "createdAt": 1787928862806,
@@ -2795,7 +2795,7 @@
   {
     "id": "pattern-1787928891529-isy0",
     "type": "action",
-    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787928890978 completed by unknown — success=true, quality=0.850",
+    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787928890978 completed by unknown — success=true, quality=0.850",
     "embedding": [
       -0.04934360831975937,
       0.043248966336250305,
@@ -3184,7 +3184,7 @@
     ],
     "confidence": 1,
     "metadata": {
-      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787928890978",
+      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787928890978",
       "quality": 0.85
     },
     "createdAt": 1787928891529,
@@ -3593,7 +3593,7 @@
   {
     "id": "pattern-1787929163801-bt7g",
     "type": "action",
-    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/plans/HUB-v2-PRESENTE-dra-paesano.md-1787929163336 completed by unknown — success=true, quality=0.850",
+    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/plans/HUB-v2-PRESENTE-dra-m.md-1787929163336 completed by unknown — success=true, quality=0.850",
     "embedding": [
       -0.07130187004804611,
       0.07558714598417282,
@@ -3982,7 +3982,7 @@
     ],
     "confidence": 1,
     "metadata": {
-      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/plans/HUB-v2-PRESENTE-dra-paesano.md-1787929163336",
+      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/plans/HUB-v2-PRESENTE-dra-m.md-1787929163336",
       "quality": 0.85
     },
     "createdAt": 1787929163801,
@@ -9179,7 +9179,7 @@
   {
     "id": "pattern-1787959309960-9qea",
     "type": "action",
-    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787959309713 completed by unknown — success=true, quality=0.850",
+    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787959309713 completed by unknown — success=true, quality=0.850",
     "embedding": [
       -0.050821803510189056,
       0.039452578872442245,
@@ -9568,7 +9568,7 @@
     ],
     "confidence": 1,
     "metadata": {
-      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787959309713",
+      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787959309713",
       "quality": 0.85
     },
     "createdAt": 1787959309960,
@@ -11573,7 +11573,7 @@
   {
     "id": "pattern-1787960019831-ejup",
     "type": "action",
-    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787960019531 completed by unknown — success=true, quality=0.850",
+    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787960019531 completed by unknown — success=true, quality=0.850",
     "embedding": [
       -0.05071476474404335,
       0.03846033290028572,
@@ -11962,7 +11962,7 @@
     ],
     "confidence": 1,
     "metadata": {
-      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787960019531",
+      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787960019531",
       "quality": 0.85
     },
     "createdAt": 1787960019831,
@@ -13169,7 +13169,7 @@
   {
     "id": "pattern-1787961619452-uxvn",
     "type": "action",
-    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787961619038 completed by unknown — success=true, quality=0.850",
+    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787961619038 completed by unknown — success=true, quality=0.850",
     "embedding": [
       -0.048388607800006866,
       0.04261891543865204,
@@ -13558,7 +13558,7 @@
     ],
     "confidence": 1,
     "metadata": {
-      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787961619038",
+      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787961619038",
       "quality": 0.85
     },
     "createdAt": 1787961619452,
@@ -13568,7 +13568,7 @@
   {
     "id": "pattern-1787961764027-u27n",
     "type": "action",
-    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787961763620 completed by unknown — success=true, quality=0.850",
+    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787961763620 completed by unknown — success=true, quality=0.850",
     "embedding": [
       -0.052462734282016754,
       0.04596666246652603,
@@ -13957,7 +13957,7 @@
     ],
     "confidence": 1,
     "metadata": {
-      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787961763620",
+      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787961763620",
       "quality": 0.85
     },
     "createdAt": 1787961764027,
@@ -19952,7 +19952,7 @@
   {
     "id": "pattern-1787964185855-tbiz",
     "type": "action",
-    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787964185581 completed by unknown — success=true, quality=0.850",
+    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787964185581 completed by unknown — success=true, quality=0.850",
     "embedding": [
       -0.043879758566617966,
       0.03739729896187782,
@@ -20341,7 +20341,7 @@
     ],
     "confidence": 1,
     "metadata": {
-      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787964185581",
+      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787964185581",
       "quality": 0.85
     },
     "createdAt": 1787964185855,
@@ -39902,7 +39902,7 @@
   {
     "id": "pattern-1787976054892-krbl",
     "type": "action",
-    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787976054520 completed by unknown — success=true, quality=0.850",
+    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787976054520 completed by unknown — success=true, quality=0.850",
     "embedding": [
       -0.04625258594751358,
       0.04320180043578148,
@@ -40291,7 +40291,7 @@
     ],
     "confidence": 1,
     "metadata": {
-      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787976054520",
+      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787976054520",
       "quality": 0.85
     },
     "createdAt": 1787976054892,
@@ -40301,7 +40301,7 @@
   {
     "id": "pattern-1787976400212-dfc4",
     "type": "action",
-    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787976399946 completed by unknown — success=true, quality=0.850",
+    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787976399946 completed by unknown — success=true, quality=0.850",
     "embedding": [
       -0.04949469864368439,
       0.041138339787721634,
@@ -40690,7 +40690,7 @@
     ],
     "confidence": 0.906,
     "metadata": {
-      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787976399946",
+      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787976399946",
       "quality": 0.85
     },
     "createdAt": 1787976400212,
@@ -40700,7 +40700,7 @@
   {
     "id": "pattern-1787976574603-hki6",
     "type": "action",
-    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787976574189 completed by unknown — success=true, quality=0.850",
+    "content": "Task edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787976574189 completed by unknown — success=true, quality=0.850",
     "embedding": [
       -0.049771297723054886,
       0.04304751381278038,
@@ -41089,7 +41089,7 @@
     ],
     "confidence": 0.802,
     "metadata": {
-      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-paesano.md-1787976574189",
+      "taskId": "edit-/Users/bauervieiracesarfilhovieira/.claude/projects/-Users-bauervieiracesarfilhovieira/memory/project-HUB-v2-presente-dra-m.md-1787976574189",
       "quality": 0.85
     },
     "createdAt": 1787976574603,
