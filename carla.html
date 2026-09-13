@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>O que eu andei construindo</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font:400 17px/1.65 -apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;color:#111;background:#fff;-webkit-font-smoothing:antialiased}
+section{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:9vh 7vw;border-bottom:1px solid #f0f0f0;scroll-snap-align:start}
+.wrap{scroll-snap-type:y proximity}
+h1{font-size:clamp(2.6rem,8vw,5.5rem);line-height:1.02;letter-spacing:-.035em;font-weight:700}
+h2{font-size:clamp(1.9rem,5.5vw,3.4rem);line-height:1.08;letter-spacing:-.03em;font-weight:650;margin-bottom:.5em}
+.sub{font-size:clamp(1.05rem,2.6vw,1.5rem);color:#555;margin-top:1.1rem;max-width:34ch;font-weight:400}
+.cap{font-size:.94rem;color:#8a8a8a;margin-top:2.2rem;max-width:46ch;line-height:1.55}
+.kicker{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:#b0b0b0;margin-bottom:1.6rem;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#eee;margin-top:2.5rem;border:1px solid #eee}
+.cell{background:#fff;padding:1.4rem 1.2rem}
+.cell b{display:block;font-size:1.02rem;margin-bottom:.25rem;font-weight:600}
+.cell span{font-size:.85rem;color:#888}
+a.btn{display:inline-block;margin-top:2rem;padding:1.05rem 2rem;background:#111;color:#fff;text-decoration:none;border-radius:100px;font-weight:600;font-size:1.02rem}
+a.btn.ghost{background:#fff;color:#111;border:1.5px solid #111;margin-left:.6rem}
+.flow{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:2.2rem;font-size:.9rem;color:#666}
+.flow i{font-style:normal;border:1px solid #ddd;padding:.55rem 1rem;border-radius:6px;background:#fafafa}
+.big{font-size:clamp(3rem,11vw,7rem);font-weight:700;letter-spacing:-.04em;line-height:1}
+.note{font-size:.8rem;color:#aaa;margin-top:3rem}
+@media(max-width:600px){section{padding:7vh 7vw}}
+</style></head><body><div class="wrap">
+
+<section>
+<div class="kicker">Para a Carla</div>
+<h1>Deixa eu te mostrar<br>o que eu andei<br>construindo.</h1>
+<p class="sub">Não é um projeto de faculdade. Está no ar, funcionando, e médico de verdade usa.</p>
+<p class="cap">Sou interno de medicina. Nas horas que sobram eu construí um ecossistema de plataformas clínicas e educacionais, junto com uma frota de inteligências artificiais que eu coordeno.</p>
+</section>
+
+<section>
+<div class="kicker">O que existe hoje</div>
+<h2>Dez plataformas.<br>Uma pessoa.</h2>
+<p class="sub">Cada uma resolve um problema real de quem estuda ou atende.</p>
+<div class="grid">
+<div class="cell"><b>HUB de Receituários</b><span>Prescrição em UBS</span></div>
+<div class="cell"><b>Mentor</b><span>O mapa da vida</span></div>
+<div class="cell"><b>Studies</b><span>Web e celular</span></div>
+<div class="cell"><b>Ginecologia</b><span>Aula viva</span></div>
+<div class="cell"><b>Neonatologia</b><span>Aula viva</span></div>
+<div class="cell"><b>Antibioticoterapia</b><span>Aula viva</span></div>
+<div class="cell"><b>Pediatria</b><span>Crescimento</span></div>
+<div class="cell"><b>Oncologia</b><span>Aula viva</span></div>
+<div class="cell"><b>Neurologia</b><span>Aula viva</span></div>
+<div class="cell"><b>Preventiva</b><span>Aula viva</span></div>
+</div>
+</section>
+
+<section>
+<div class="kicker">Abre agora, no seu celular</div>
+<h2>O HUB de Receituários.</h2>
+<p class="sub">Feito para a pressão de um plantão, onde cada segundo de raciocínio conta.</p>
+<div>
+<a class="btn" href="https://bauerfilho.github.io/bauer-hub-preview/">Abrir o HUB</a>
+<a class="btn ghost" href="https://bauerfilho.github.io/bauer-orquestrator-preview/">Ver o ecossistema</a>
+</div>
+<p class="cap">Pode tocar e navegar. É o app de verdade, não uma foto dele.</p>
+</section>
+
+<section>
+<div class="kicker">Como isso é possível</div>
+<h2>Eu não escrevo<br>tudo sozinho.<br>Eu orquestro.</h2>
+<p class="sub">Uma frota de IAs trabalha em linha de montagem, e cada uma tem um ofício.</p>
+<div class="flow"><i>Roteirista</i>→<i>Especificador</i>→<i>Didata</i>→<i>Executor</i>→<i>Auditor</i></div>
+<p class="cap">O conteúdo médico sai de aula e de diretriz oficial brasileira. Quem decide o que é verdade sou eu. As máquinas fazem o volume, nunca o julgamento clínico.</p>
+</section>
+
+<section>
+<div class="kicker">O piso</div>
+<h2>Se não ensina,<br>é cortado.</h2>
+<p class="sub">Toda imagem é autoral ou de uso livre com a fonte registrada. Nada de figura roubada de Google.</p>
+<p class="cap">Cada página tem questão de fixação, tópico escrito para aquele assunto e não para preencher espaço, e passa por um auditor automático que reprova o que estiver abaixo do padrão.</p>
+</section>
+
+<section>
+<div class="kicker">Por que eu estou te mostrando</div>
+<h1 class="big">Está de pé.<br>E dá para ir<br>muito além.</h1>
+<p class="sub" style="margin-top:2rem">A parte difícil já passou: a base existe, funciona e tem gente usando.</p>
+<p class="cap">Eu te chamei porque construir isso sozinho tem limite, e não é limite de máquina.</p>
+<p class="note">Feito em casa, em Goiânia. Setembro de 2026.</p>
+</section>
+
+</div></body></html>
