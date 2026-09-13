@@ -1,0 +1,119 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   TEMA ORQUESTRATOR — camada de identidade visual do hub (screen-only)
+   Autoria: brain, 28/08/2026, sob direção do dono (branco · claro · fino ·
+   chique · dourado na coroa dela e na marca Orquestrator · semânticas intactas).
+   REGRAS DURAS: só @media screen · NUNCA tocar .print-sheet/.orientation-page/
+   #printPortal/.rx-body (papel é sagrado) · tipografia da plataforma mantida ·
+   carregar DEPOIS do <style> inline (cascata é a integração).
+   Ativação do modo dela: body.tema-m (window.TEMA.m(true|false)).
+   ══════════════════════════════════════════════════════════════════════════ */
+@font-face{font-family:'Archivo Black';src:url('fonts/archivo-black.woff2') format('woff2');font-weight:400;font-style:normal;font-display:block}
+@media screen {
+
+  /* ─── tokens da camada ─── */
+  :root{
+    --ouro:#B08A3E;            /* ouro velho, contido */
+    --ouro-vivo:#C9A227;
+    --ouro-linha:rgba(176,138,62,.42);
+    --ouro-nevoa:rgba(176,138,62,.10);
+    --marfim:#FBF8F2;          /* fundo do modo dela */
+    --blush:#FAF3EC;           /* cartões do modo dela */
+    --coroa: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 16'%3E%3Cpath d='M3 13h18M4 10 3 4l4.6 3L12 2l4.4 5L21 4l-1 6z' fill='none' stroke='%23B08A3E' stroke-width='1.3' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E");
+    /* o símbolo do ORQUESTRATOR (ordem do dono 22h40): círculo dourado com a
+       pedrinha-losango dentro — sem o fundo preto do app icon */
+    --simbolo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9.2' fill='none' stroke='%23B08A3E' stroke-width='1.7'/%3E%3Crect x='8.9' y='8.9' width='6.2' height='6.2' rx='1.1' transform='rotate(45 12 12)' fill='%23C9A227'/%3E%3C/svg%3E");
+  }
+
+  /* ─── a marca do Orquestrator em TODO o UI ───
+     1) o filete de ouro no topo da appbar — a assinatura silenciosa */
+  .appbar::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--ouro-linha) 18%,var(--ouro-vivo) 50%,var(--ouro-linha) 82%,transparent)}
+
+  /* 2) o selo-palavra (injetado por tema-orquestrator.js) */
+  .orq-marca{display:inline-flex;align-items:center;gap:7px;margin-left:auto;
+    font-size:10.5px;font-weight:800;letter-spacing:.22em;color:var(--ouro);
+    border:1px solid var(--ouro-linha);border-radius:999px;padding:6px 12px 6px 10px;
+    background:linear-gradient(180deg,#fff,#FDFAF4);white-space:nowrap;user-select:none}
+  .orq-coroa{display:inline-block;width:17px;height:12px;background:var(--coroa) center/contain no-repeat}
+  .orq-simbolo{display:inline-block;width:20px;height:20px;background:var(--simbolo) center/contain no-repeat}
+
+  /* ─── a página de login (direção do dono 28/08 ~23h: assinatura da casa) ─── */
+  .f2x-login-card{border:1.5px solid #C9A227!important;box-shadow:0 12px 44px rgba(201,162,39,.18)!important}
+  .orq-emblema{width:62px;height:62px;margin:0 auto 8px}
+  .orq-emblema svg{width:100%;height:100%;display:block}
+  .orq-wordmark{margin:0 auto 4px;text-align:center}
+  .orq-wordmark svg{display:block;width:min(330px,94%);margin:0 auto}
+  .orq-wordsub{font-size:11px;font-weight:800;color:#C9A227;margin-top:1px;display:flex;align-items:center;justify-content:center;gap:9px}
+  .orq-wordsub .w{letter-spacing:.42em;margin-right:-.42em}
+  .orq-losango{display:inline-block;width:8px;height:8px;background:#15181D;transform:rotate(45deg);border-radius:1.5px;flex:0 0 auto}
+  #f2xLoginEntrar{background:#15181D!important;border-color:#15181D!important;color:#fff!important}
+  #f2xLoginEntrar:hover{background:#000!important}
+  /* o símbolo DELA (ordem do dono 28/08: "o esteto é mais ela"; estrela fica p/ favoritos) */
+  .orq-esteto{display:inline-block;width:16px;height:16px;vertical-align:-2px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3' fill='none' stroke='%23B08A3E' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4' fill='none' stroke='%23B08A3E' stroke-width='1.6' stroke-linecap='round'/%3E%3Ccircle cx='20' cy='10' r='2' fill='none' stroke='%23B08A3E' stroke-width='1.6'/%3E%3C/svg%3E") center/contain no-repeat}
+  @media(max-width:720px){.orq-marca{display:none}}
+
+  /* 3a) A HOME (direção do dono 28/08 ~22h18): verde à esquerda morrendo em
+     dourado no canto direito — nos DOIS cards do topo, com tracejado dourado.
+     Círculos decorativos do hero mantidos; ouro é cor, nunca neon. */
+  .hero{background:linear-gradient(115deg,#083c3a 0%,#0f766e 48%,#1d6b58 64%,#6e6134 86%,#B08A3E 103%);
+    border:1.5px solid #C9A227;box-shadow:0 4px 18px rgba(201,162,39,.16),var(--shadow)}
+  #f2xSaudacao{border:1.5px solid #C9A227!important;box-shadow:0 3px 14px rgba(201,162,39,.14)}
+
+  /* 3b) os ícones do índice: glifo VERDE, centrado, encaixado; fio dourado
+     extremamente fino circulando o ícone + réstia interna de ouro (brilho, não neon) */
+  .feature-icon{display:grid;place-items:center;font-size:19px;line-height:1;color:#0f766e;
+    border:1px solid rgba(176,138,62,.55);
+    box-shadow:inset 0 0 0 1.5px rgba(201,162,39,.16), inset 0 1px 6px rgba(201,162,39,.10)}
+  .feature-icon>*{margin:0;line-height:1;transform:none}
+  .feature-icon svg{display:block;width:32px;height:32px;margin:auto;position:relative;top:2px}
+  .feature-card{align-items:center}
+
+  /* 3) acabamentos finos herdados pela plataforma inteira */
+  .category-title:after{background:linear-gradient(90deg,var(--line),var(--ouro-linha))}
+  .feature-card:hover{border-color:var(--ouro-linha)}
+  .topic-card:hover{border-color:var(--ouro-linha)}
+  .brand strong{letter-spacing:.02em}
+
+  /* ─── um pouco DELA na página inicial: a dedicatória (injetada via JS) ─── */
+  .orq-dedicatoria{position:relative;z-index:1;display:inline-flex;align-items:center;gap:9px;
+    margin-top:16px;padding:7px 14px;border:1px solid #C9A227;border-radius:999px;
+    font-size:12px;letter-spacing:.08em;color:#F6EFDD;background:rgba(255,255,255,.08)}
+  .orq-dedicatoria .orq-coroa{filter:brightness(1.9) saturate(.7)}
+
+  /* ─── a coroa dela — botão e cabeçalhos (classe contratual .f2-coroa) ─── */
+  .f2-coroa{position:relative;border:1px solid var(--ouro-linha)!important;
+    background:linear-gradient(180deg,#fff,#FBF6EA)!important;color:#7A5B1E!important;
+    font-weight:800;border-radius:999px}
+  .f2-coroa::before{content:"";display:inline-block;width:17px;height:12px;margin-right:7px;
+    vertical-align:-1px;background:var(--coroa) center/contain no-repeat}
+  .f2-coroa:hover{background:linear-gradient(180deg,#fff,#F6ECD6)!important;border-color:var(--ouro)!important}
+
+  /* cards de esquema (quando o codex os entregar) — só acento, sem briga de layout */
+  .regimen-card{transition:border-color .15s ease}
+  .regimen-card:hover{border-color:var(--ouro-linha)}
+  .regimen-card.active{box-shadow:0 0 0 1px var(--ouro-linha)}
+
+  /* ═══ O MODO DELA — body.tema-m (liga ao apertar o botão/login dela) ═══
+     claro, delicado, marfim; o palco de trabalho continua branco. */
+  body.tema-m{--bg:var(--marfim)}
+  body.tema-m .appbar::before{height:3px}
+  body.tema-m .appbar{border-bottom-color:var(--ouro-linha)}
+  body.tema-m .brand span{color:#8A6D3B}
+  body.tema-m .orq-marca{background:linear-gradient(180deg,#fff,#F8F0DF);border-color:var(--ouro)}
+
+  /* a seção dela: cartões em marfim com fio de ouro */
+  body.tema-m #draM.Mount .f2-esq,
+  body.tema-m .f2-esq{background:#FFFDF8;border-color:var(--ouro-linha)}
+  body.tema-m #draM.Mount h3,
+  body.tema-m #draM.Mount .f2-esq-topo strong{color:#6E5320}
+  body.tema-m .f2-btn{border-color:var(--ouro-linha)}
+  body.tema-m .f2-btn:hover{background:var(--ouro-nevoa)}
+
+  /* toolbar e navegação ganham o véu quente, sem perder leitura */
+  body.tema-m .workspace-toolbar{background:rgba(251,248,242,.95)}
+  body.tema-m .feature-icon{background:var(--ouro-nevoa)}
+  body.tema-m .stat{border-color:rgba(255,255,255,.28)}
+
+  /* semânticas INTACTAS por contrato: --warn/--danger/--brand não são tocadas. */
+}

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Atendimento — nota SOAP · Hub UBS 2026</title>
+  <link rel="stylesheet" href="f2.css">
+  <link rel="stylesheet" href="tema-orquestrator.css">
+</head>
+<body class="f2-page">
+
+  <!-- Barra superior da tela -->
+  <div class="f2-topbar">
+    <a class="f2-voltar" href="index-f2.html">← Hub</a>
+    <a class="f2-voltar" href="pacientes.html">Pacientes</a>
+    <h1 id="tituloPagina">Novo atendimento</h1>
+    <button type="button" class="f2-btn f2-btn-secundario" id="btnImprimir">Imprimir</button>
+    <button type="button" class="f2-btn f2-btn-primario" id="btnSalvar">Salvar</button>
+  </div>
+
+  <div class="f2-wrap">
+
+    <!-- Paciente: seletor + criar sem sair da tela -->
+    <div class="f2-card">
+      <div class="f2-form" style="margin:0;background:transparent;padding:0">
+        <label for="selPaciente">Paciente</label>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <select id="selPaciente" style="flex:1;min-width:220px;padding:12px 14px;font-size:1.05rem;border:1px solid var(--f2-line);border-radius:10px;font-family:inherit;background:#fff">
+            <option value="">— Escolha o paciente —</option>
+          </select>
+          <button type="button" class="f2-btn f2-btn-secundario" id="btnNovoPac">＋ Novo paciente</button>
+        </div>
+
+        <!-- Cadastro em linha: só o nome é obrigatório -->
+        <div id="novoPacForm" hidden style="margin-top:10px;background:var(--f2-bg);border-radius:12px;padding:14px">
+          <label for="npNome">Nome do paciente</label>
+          <input type="text" id="npNome" autocomplete="off">
+          <label for="npNasc">Nascimento <span class="f2-opcional">(opcional)</span></label>
+          <input type="date" id="npNasc">
+          <label for="npCns">Cartão SUS <span class="f2-opcional">(opcional)</span></label>
+          <input type="text" id="npCns" autocomplete="off">
+          <div class="f2-form-erro" id="npErro" role="alert"></div>
+          <div class="f2-form-acoes">
+            <button type="button" class="f2-btn f2-btn-primario" id="npSalvar">Salvar paciente</button>
+            <button type="button" class="f2-btn f2-btn-secundario" id="npCancelar">Cancelar</button>
+          </div>
+        </div>
+
+        <label for="inpData" style="margin-top:14px">Data e hora</label>
+        <input type="datetime-local" id="inpData">
+      </div>
+    </div>
+
+    <!-- Doenças vinculadas: chips com busca -->
+    <div class="f2-card">
+      <div class="f2-form" style="margin:0;background:transparent;padding:0">
+        <label for="inpDoenca">Doenças deste atendimento <span class="f2-opcional">(opcional — busque e toque para vincular)</span></label>
+        <input type="text" id="inpDoenca" placeholder="Ex.: ITU, asma, hipertensão…" autocomplete="off">
+        <div class="f2-chip-busca-resultados" id="resDoenca" hidden></div>
+        <div class="f2-chips" id="chipsDoenca" style="margin-top:10px"></div>
+      </div>
+    </div>
+
+    <!-- SOAP nas 4 cores PEC -->
+    <div class="f2-soap">
+      <section class="f2-soap-bloco f2-soap-s">
+        <h3><span class="f2-letra">S</span> Subjetivo — o que o paciente conta</h3>
+        <textarea id="txS" placeholder="Queixa, história, sintomas relatados…"></textarea>
+      </section>
+      <section class="f2-soap-bloco f2-soap-o">
+        <h3><span class="f2-letra">O</span> Objetivo — o que você observa e mede</h3>
+        <textarea id="txO" placeholder="Exame físico, sinais vitais, resultados…"></textarea>
+      </section>
+      <section class="f2-soap-bloco f2-soap-a">
+        <h3><span class="f2-letra">A</span> Avaliação — o seu raciocínio</h3>
+        <textarea id="txA" placeholder="Hipóteses, diagnóstico, gravidade…"></textarea>
+      </section>
+      <section class="f2-soap-bloco f2-soap-p">
+        <h3><span class="f2-letra">P</span> Plano — o que fica decidido</h3>
+        <textarea id="txP" placeholder="Prescrição, exames, orientações, retorno…"></textarea>
+      </section>
+    </div>
+
+    <div class="f2-form-acoes" style="margin-top:16px">
+      <button type="button" class="f2-btn f2-btn-primario" id="btnSalvar2">Salvar</button>
+      <button type="button" class="f2-btn f2-btn-secundario" id="btnApagar" hidden>Apagar atendimento</button>
+    </div>
+  </div>
+
+  <!-- Folha de impressão: escondida na tela, única visível no print -->
+  <section class="f2-print-sheet" id="folha"></section>
+
+  <script src="tema-orquestrator.js"></script>
+  <script src="js/dados.js"></script>
+  <script src="js/topicos.js"></script>
+  <script>
+  (() => {
+    'use strict';
+    const $ = s => document.querySelector(s);
+    const DB = window.F2DB;
+    const TOPICOS = window.F2_TOPICOS || [];
+
+    let atendimentoId = null;   // null = novo; preenchido = editando
+    let doencasSel = [];        // ids dos tópicos vinculados
+    let sujo = false;           // guarda de rascunho
+
+    function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+    function avisar(msg){
+      let t=$('#f2Toast');
+      if(!t){t=document.createElement('div');t.id='f2Toast';t.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#172033;color:#fff;padding:12px 20px;border-radius:12px;font-size:1rem;z-index:99;max-width:90vw;text-align:center;';document.body.appendChild(t);}
+      t.textContent=msg;t.style.display='block';clearTimeout(t._timer);t._timer=setTimeout(()=>{t.style.display='none'},2600);
+    }
+    function confirmar(titulo,texto,rotulo,aoConfirmar){
+      const fundo=document.createElement('div');fundo.className='f2-modal-fundo';
+      fundo.innerHTML='<div class="f2-modal" role="dialog" aria-modal="true"><h2>'+esc(titulo)+'</h2><p>'+esc(texto)+'</p><div class="f2-form-acoes"><button type="button" class="f2-btn f2-btn-secundario" data-a="v">Voltar</button><button type="button" class="f2-btn f2-btn-perigo" data-a="c">'+esc(rotulo)+'</button></div></div>';
+      fundo.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(!b||b.dataset.a==='v'||e.target===fundo){fundo.remove();return;}fundo.remove();aoConfirmar();});
+      document.body.appendChild(fundo);
+    }
+    function marcarSujo(){sujo=true;}
+
+    // ---------------- Paciente ----------------
+    function recarregarPacientes(selecionarId){
+      const sel=$('#selPaciente');
+      sel.innerHTML='<option value="">— Escolha o paciente —</option>'+
+        DB.patients.listar().slice().sort((a,b)=>a.nome.localeCompare(b.nome,'pt-BR'))
+          .map(p=>'<option value="'+esc(p.id)+'">'+esc(p.nome)+'</option>').join('');
+      if(selecionarId) sel.value=selecionarId;
+    }
+
+    $('#btnNovoPac').onclick=()=>{$('#novoPacForm').hidden=false;$('#npNome').focus();};
+    $('#npCancelar').onclick=()=>{$('#novoPacForm').hidden=true;};
+    $('#npSalvar').onclick=()=>{
+      try{
+        const p=DB.patients.criar({nome:$('#npNome').value,nascimento:$('#npNasc').value,cns:$('#npCns').value});
+        $('#novoPacForm').hidden=true;$('#npNome').value='';$('#npNasc').value='';$('#npCns').value='';$('#npErro').textContent='';
+        recarregarPacientes(p.id);marcarSujo();avisar('Paciente cadastrado.');
+      }catch(e){$('#npErro').textContent=e.message;}
+    };
+
+    // ---------------- Doenças (chips + busca) ----------------
+    function renderChips(){
+      $('#chipsDoenca').innerHTML=doencasSel.map(id=>{
+        const t=TOPICOS.find(x=>x.id===id);
+        return '<span class="f2-chip">'+esc(t?t.titulo:id)+' <a href="#" class="f2-chip f2-chip-x" data-x="'+esc(id)+'" style="padding:2px 8px;margin-left:4px">×</a></span>';
+      }).join('');
+    }
+    $('#chipsDoenca').addEventListener('click',e=>{
+      const x=e.target.closest('[data-x]');
+      if(!x)return;
+      e.preventDefault();
+      doencasSel=doencasSel.filter(id=>id!==x.dataset.x);
+      renderChips();marcarSujo();
+    });
+    $('#inpDoenca').addEventListener('input',e=>{
+      const q=DB.norm(e.target.value);
+      const res=$('#resDoenca');
+      if(!q){res.hidden=true;res.innerHTML='';return;}
+      const achados=TOPICOS.filter(t=>DB.norm(t.titulo).includes(q)||DB.norm(t.categoria).includes(q)||DB.norm(t.id).includes(q)).slice(0,12);
+      res.innerHTML=achados.map(t=>'<button type="button" data-add="'+esc(t.id)+'">'+esc(t.titulo)+' <span class="f2-cat">· '+esc(t.categoria)+'</span></button>').join('')||'<button type="button" disabled>Nada encontrado</button>';
+      res.hidden=false;
+    });
+    $('#resDoenca').addEventListener('click',e=>{
+      const b=e.target.closest('[data-add]');
+      if(!b)return;
+      if(!doencasSel.includes(b.dataset.add)){doencasSel.push(b.dataset.add);marcarSujo();}
+      renderChips();$('#inpDoenca').value='';$('#resDoenca').hidden=true;$('#inpDoenca').focus();
+    });
+    document.addEventListener('click',e=>{
+      if(!e.target.closest('#inpDoenca')&&!e.target.closest('#resDoenca'))$('#resDoenca').hidden=true;
+    });
+
+    // ---------------- Data/hora: preenche com "agora" ----------------
+    function agoraLocal(){
+      const d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());
+      return d.toISOString().slice(0,16);
+    }
+
+    // ---------------- Abrir para editar (#c=<id>) / pré-selecionar paciente (?p=) ----------------
+    function carregar(){
+      recarregarPacientes();
+      const hash=new URLSearchParams(location.hash.slice(1));
+      const params=new URLSearchParams(location.search);
+      const cid=hash.get('c');
+      if(cid){
+        const c=DB.consults.buscar(cid);
+        if(c){
+          atendimentoId=c.id;
+          $('#tituloPagina').textContent='Atendimento de '+((DB.patients.buscar(c.patientId)||{}).nome||'');
+          recarregarPacientes(c.patientId);
+          $('#inpData').value=(c.datetime||'').slice(0,16);
+          doencasSel=Array.isArray(c.topicIds)?c.topicIds.slice():[];
+          $('#txS').value=c.s||'';$('#txO').value=c.o||'';$('#txA').value=c.a||'';$('#txP').value=c.p||'';
+          $('#btnApagar').hidden=false;
+          renderChips();sujo=false;return;
+        }
+        avisar('Atendimento não encontrado.');
+      }
+      $('#inpData').value=agoraLocal();
+      if(params.get('p'))recarregarPacientes(params.get('p'));
+      sujo=false;
+    }
+
+    // ---------------- Salvar (fail-closed: sem paciente, não salva) ----------------
+    function salvar(){
+      const pid=$('#selPaciente').value;
+      if(!pid){avisar('Escolha o paciente antes de salvar.');$('#selPaciente').focus();return;}
+      const dados={patientId:pid,datetime:$('#inpData').value?new Date($('#inpData').value).toISOString():new Date().toISOString(),
+        topicIds:doencasSel.slice(),s:$('#txS').value,o:$('#txO').value,a:$('#txA').value,p:$('#txP').value};
+      try{
+        if(atendimentoId){DB.consults.atualizar(atendimentoId,dados);}
+        else{atendimentoId=DB.consults.criar(dados).id;$('#btnApagar').hidden=false;}
+        sujo=false;avisar('Atendimento salvo.');
+      }catch(e){avisar(e.message||'Não consegui salvar.');}
+    }
+    $('#btnSalvar').onclick=salvar;
+    $('#btnSalvar2').onclick=salvar;
+
+    $('#btnApagar').onclick=()=>{
+      confirmar('Apagar este atendimento?','O registro será apagado deste computador. Esta ação não pode ser desfeita.','Apagar',()=>{
+        DB.consults.apagar(atendimentoId);sujo=false;location.href='pacientes.html';
+      });
+    };
+
+    // ---------------- Imprimir: 1 folha A4, com aviso se exceder ----------------
+    function montarFolha(){
+      const pac=DB.patients.buscar($('#selPaciente').value);
+      const data=$('#inpData').value?new Date($('#inpData').value):new Date();
+      const doencas=doencasSel.map(id=>{const t=TOPICOS.find(x=>x.id===id);return t?t.titulo:id;});
+      const bloco=(cls,letra,nome,cor,texto)=>
+        '<div class="f2-print-soap-bloco '+cls+'" style="background:'+cor.bg+';border-color:'+cor.fg+'">'+
+        '<h2 style="color:'+cor.fg+'">'+letra+' — '+nome+'</h2>'+
+        '<div class="f2-print-texto">'+esc(texto||'')+'</div></div>';
+      $('#folha').innerHTML=
+        '<div class="f2-print-head"><h1>Nota de atendimento (SOAP)</h1>'+
+        '<p><strong>Paciente:</strong> '+esc(pac?pac.nome:'—')+(pac&&pac.nascimento?' · Nasc.: '+esc(pac.nascimento):'')+(pac&&pac.cns?' · CNS: '+esc(pac.cns):'')+
+        ' · <strong>Data:</strong> '+esc(data.toLocaleString('pt-BR'))+'</p>'+
+        (doencas.length?'<p><strong>Doenças:</strong> '+esc(doencas.join(' · '))+'</p>':'')+'</div>'+
+        bloco('f2-soap-s','S','Subjetivo',{bg:'#FCE4EC',fg:'#AD1457'},$('#txS').value)+
+        bloco('f2-soap-o','O','Objetivo',{bg:'#E3F2FD',fg:'#1565C0'},$('#txO').value)+
+        bloco('f2-soap-a','A','Avaliação',{bg:'#FFF8E1',fg:'#F9A825'},$('#txA').value)+
+        bloco('f2-soap-p','P','Plano',{bg:'#E8F5E9',fg:'#2E7D32'},$('#txP').value)+
+        '<div class="f2-print-assinatura"><div class="f2-linha-ass"></div>Assinatura e carimbo</div>'+
+        '<div class="f2-print-rodape"><span>Hub de Receituários UBS 2026 — nota SOAP</span><span>Documento gerado neste computador</span></div>';
+    }
+
+    $('#btnImprimir').onclick=()=>{
+      montarFolha();
+      // Mede o OVERFLOW de conteúdo (a folha tem min-height de 1 A4: medir a
+      // folha em si mediria a régua, não o conteúdo — scrollHeight>clientHeight
+      // é o sinal de "passou de 1 folha").
+      const folha=$('#folha');
+      const estilo=folha.style.cssText;
+      folha.style.cssText='display:block;position:absolute;left:-9999px;top:0;visibility:hidden;';
+      const excedeu=folha.offsetHeight>Math.round(297*96/25.4)+3; // 1 A4 em px + tolerância
+      folha.style.cssText=estilo;
+      const imprimir=()=>window.print();
+      if(excedeu){
+        confirmar('Este registro passa de 1 folha','Este registro vai usar mais de 1 folha A4. Resuma o texto ou confirme para imprimir assim mesmo.','Imprimir assim mesmo',imprimir);
+      }else{imprimir();}
+    };
+
+    // Guarda de rascunho (mesmo padrão do HUB: avisa ao sair com texto não salvo)
+    document.addEventListener('input',e=>{
+      if(e.target.closest('textarea,input,select'))marcarSujo();
+    });
+    window.addEventListener('beforeunload',e=>{if(sujo){e.preventDefault();e.returnValue='';}});
+
+    carregar();
+  })();
+  </script>
+</body>
+</html>
